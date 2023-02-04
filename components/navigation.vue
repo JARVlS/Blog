@@ -8,7 +8,7 @@
                 <nuxt-link class="navigation_link" to="/posts">POSTS</nuxt-link>
             </li>
         </ul>
-        <h1 id="logo">WE<span>R</span>TECH</h1>
+        <h1 id="logo">LOGO</h1>
   </div>
 </template>
 
@@ -19,7 +19,7 @@
   grid-template-columns: auto max-content;
   align-items: center;
   gap: min(3vw, 3rem);
-  box-shadow: 0 0 20px black;
+  box-shadow: 0 0 20px var(--shadows);
 }
 
 #navigation_links {
@@ -61,12 +61,7 @@
   transform: scaleX(1);
 }
 
-#logo,
-#logo span {
-  /* font-family: Brolink, Calibri; */
+#logo{
   font-size: 2.5rem;
-}
-#logo span {
-  color: var(--blue_gray);
 }
 </style>

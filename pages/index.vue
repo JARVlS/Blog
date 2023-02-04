@@ -1,12 +1,9 @@
 <template>
-<div class="page">
-    <navigation></navigation>
-</div>    
+    <div class="page_content">
+        <h1>Welcome</h1>
+    </div>
 </template>
 
 <style scoped>
-.navigation{
-    width: 100vw;
-}
 
 </style>

@@ -1,5 +1,6 @@
 <template>
-  <div>
+  <div class="page" lang="en">
+    <navigation></navigation>
     <!-- liest aus /pages -->
     <NuxtPage />
    
@@ -18,10 +19,11 @@
 }
 
 :root {
-    --bg_main: #111111;
+    --bg_main: #181818;
     --midnight_blue: #103850;
     --blue_gray: #738FA7;
     --text_main: #ffffff;
+    --shadows: #000000;
 }
 
 *{
@@ -39,5 +41,10 @@
   overflow: auto;
   position: relative;
 }
+
+.page_content{
+  padding: 2rem;
+}
+
 
 </style>
