@@ -6,10 +6,12 @@ import {
   QueryBuilderWhere,
 } from "@nuxt/content/dist/runtime/types";
 
-const availabeTags = ["a", "b", "c", "definite", "tech"];
+const availabeTags = ["Coding", "Tech", "Hacking", "Laptops", "Gaming"];
+
 const routeTags = useRouteQuery("tags", [] as string[], {
   mode: "replace",
 }) as Ref<string | string[]>;
+
 const chosenTags = computed<string[]>({
   get: () =>
     typeof routeTags.value === "string" ? [routeTags.value] : routeTags.value,
@@ -18,10 +20,19 @@ const chosenTags = computed<string[]>({
   },
 });
 
+const blog_search = ref("");
+const limit: Ref<number> = ref(10);
+
 const where = computed(() => {
-  if (chosenTags.value.length > 0)
-    return { tags: { $contains: chosenTags.value } } as QueryBuilderWhere;
-  else return {} as QueryBuilderWhere;
+  let temp = {} as QueryBuilderWhere;
+  if (chosenTags.value.length > 0) {
+    temp.tags = { $contains: chosenTags.value };
+    // return { tags: { $contains: chosenTags.value } } as QueryBuilderWhere;
+  }
+  if (blog_search) {
+    temp.description = { $icontains: blog_search.value };
+  }
+  return temp;
 });
 </script>
 
@@ -39,9 +50,10 @@ const where = computed(() => {
         :class="chosenTags.includes(tag) ? 'checked' : ''"
       ></custom-checkbox>
     </div>
+    <search-bar v-model:search-model="blog_search"></search-bar>
 
-    <ContentQuery path="posts" :where="where" v-slot="{ data }">
-      <menu  id="available_blogs">
+    <ContentQuery path="posts" :where="where" v-slot="{ data }" :limit="limit">
+      <menu id="available_blogs">
         <p class="header">Available Blogs</p>
         <nuxt-link
           v-for="article in data"
@@ -49,19 +61,27 @@ const where = computed(() => {
           :to="article._path"
           class="blog_link"
           v-if="data.length > 0"
-          >
+        >
           <span class="title">
             {{ article.title }}
           </span>
           -
           <span class="description">
             {{ article.description.substring(0, 25) }}
-            {{ article.description.length > 15?'...' : '' }}
+            {{ article.description.length > 25 ? "..." : "" }}
           </span>
-          </nuxt-link
-        >
+          <span class="full_description">
+            {{ article.description }}
+          </span>
+        </nuxt-link>
         <p v-else id="none_found">Sorry... No articles found.</p>
       </menu>
+      <div
+        class="show_more"
+        @click="if(data.length==limit){limit=limit+10};"
+      >
+        Show more
+      </div>
     </ContentQuery>
   </div>
 </template>
@@ -120,12 +140,13 @@ const where = computed(() => {
   margin-top: 2rem;
 }
 
-#available_blogs>.header{
+#available_blogs > .header {
   font-weight: bold;
   font-size: 1.75rem;
 }
 
 .blog_link {
+  position: relative;
   width: 100%;
   text-decoration: none;
   color: var(--text_main);
@@ -135,7 +156,42 @@ const where = computed(() => {
   font-size: 1.1rem;
 }
 
-.blog_link>.title{
+.blog_link > .title {
   font-weight: bold;
 }
+
+.show_more {
+  cursor: pointer;
+  padding: 1rem 2rem;
+  box-shadow: 0 0 15px var(--shadows);
+  border-radius: 5px;
+  margin-top: 2rem;
+  transition: transform 0.2s;
+}
+
+.show_more:hover {
+  transform: scale(1.05);
+}
+
+.full_description{
+  position: absolute;
+  display: none;
+  bottom: -1rem;
+  width: 45%;
+  left: 50%;
+  padding: 1rem 2rem;
+  z-index: 10 ;
+  background-color: var(--bg_main);
+  box-shadow: 0 0 15px var(--shadows);
+  border-radius: 5px;
+  transform: scale(0);
+  opacity: 0;
+  transition: opacity .3s;
+}
+
+.blog_link:hover>.full_description{
+  transform: scale(1);
+  opacity: 1;
+}
+
 </style>
