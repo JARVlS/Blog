@@ -110,5 +110,6 @@ const onClick = () => {
 }
 .checkbox_input:checked ~ .checkbox_label::before {
     color: var(--base);
+    border-color: var(--color_main);
 }
 </style>

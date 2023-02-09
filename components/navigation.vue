@@ -48,7 +48,7 @@
   width: 100%;
   height: 100%;
   border-radius: 2px;
-  background-color: var(--text_main);
+  background-color: var(--color_main);
   transform: scaleX(0);
   transform-origin: left;
   transition: transform 0.2s;
@@ -63,5 +63,6 @@
 
 #logo{
   font-size: 2.5rem;
+  color: var(--color_main);
 }
 </style>

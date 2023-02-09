@@ -1,0 +1,39 @@
+domains:
+
+techdiaries.it - Logo -> Book with one half disappearing in processor nodes
+programmersdiary.com
+brainoverclock.com
+brain-assembly.com
+techchronicles.it
+techhack.it
+thoughts-rewired.com
+latenighthelp.com / latenight-help.com
+revisioned.it
+code-zombies.com / code-zombies.it
+codetrovert.com
+blog-zone.it
+toughtrate.com
+prograsting.com
+bug-ninja.it / bug-ninja.de
+blogster.it
+isthistouch.com / is-this-touch.com
+
+*** unblogged.it / midnight-blog.com***
+/ unbloged.it
+unbloged.org / unblogged.org
+blog-of-dawn.com
+
+coffee-and-read.com
+
+unplugged-network.it / unplugged-blog.it / unplugged-blog.com
+
+code-of-dawn.com
+midnight-reads.com
+
+
+silicone-bloggers.com
+
+
+words:
+unplug
+reboot

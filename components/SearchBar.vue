@@ -57,7 +57,7 @@ watch(searched, (n,o)=>{
 }
 #searchBar:focus,
 #searchBar:valid {
-    border-bottom-color: var(--base);
+    border-bottom-color: var(--color_main);
 }
 #searchBarLabel {
     position: absolute;

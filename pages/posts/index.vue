@@ -38,7 +38,7 @@ const where = computed(() => {
 
 <template>
   <div class="page_content blog_selection">
-    <h1>Das hier wird mein Inhaltsverzeichnis</h1>
+    <h1 id="headline">Select Your Read</h1>
 
     <div class="filters">
       <p>Filters</p>
@@ -54,7 +54,7 @@ const where = computed(() => {
 
     <ContentQuery path="posts" :where="where" v-slot="{ data }" :limit="limit">
       <menu id="available_blogs">
-        <p class="header">Available Blogs</p>
+        <p class="header">Available blogs</p>
         <nuxt-link
           v-for="article in data"
           :key="article._path"
@@ -78,7 +78,11 @@ const where = computed(() => {
       </menu>
       <div
         class="show_more"
-        @click="if(data.length==limit){limit=limit+10};"
+        @click="
+          if (data.length == limit) {
+            limit = limit + 10;
+          }
+        "
       >
         Show more
       </div>
@@ -93,16 +97,24 @@ const where = computed(() => {
   font-weight: bold;
 }
 
+#headline{
+  margin-bottom: 1rem;
+}
+
 .blog_selection {
-  width: 65vw;
+  width: 92vw;
   margin: auto;
   box-shadow: 0 0 15px var(--shadows);
-  margin-top: 2rem;
-  height: 100%;
+  margin-top: 2rem ;
+  margin-bottom: 2rem;
+  padding: 2rem 1rem;
+  height: max-content;
   display: flex;
   flex-direction: column;
   align-items: center;
   position: relative;
+  border-radius: 5px;
+  /* transition: width 0.3s, padding .3s; */
 }
 
 .filters {
@@ -110,8 +122,20 @@ const where = computed(() => {
   max-width: 100%;
   position: relative;
   align-items: center;
-  grid-template-columns: repeat(3, minmax(calc(33% - 2rem), 9rem));
-  gap: 1rem;
+  grid-template-columns: repeat(2, minmax(calc(33% - 2rem), 9rem));
+  gap: .5rem;
+  transition: gap 0.3s;
+}
+
+@media (min-width: 850px) {
+  .blog_selection {
+    width: 65vw;
+    padding: 2rem;
+  }
+  .filters {
+    gap: 1rem;
+    grid-template-columns: repeat(3, minmax(calc(33% - 2rem), 9rem));
+  }
 }
 
 .filters > p {
@@ -129,7 +153,7 @@ const where = computed(() => {
 }
 
 .filters > .checkbox_input_group.checked {
-  box-shadow: 0 0 5px var(--text_main);
+  box-shadow: 0 0 15px -2px var(--color_main);
 }
 #available_blogs {
   display: flex;
@@ -160,8 +184,31 @@ const where = computed(() => {
   font-weight: bold;
 }
 
+@media(min-width: 850px){
+  .blog_link {
+    padding: 1rem 2rem 1rem 3.5rem;
+  }
+  .blog_link::before{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1.5rem;
+    height: 100%;
+    border-radius: 5px 0 0 5px;
+    background-color: var(--color_main);
+    transition: width 0.2s;
+  }
+
+  .blog_link:hover::before{
+    width: 2.5rem;
+  }
+}
+
+
 .show_more {
   cursor: pointer;
+  position: relative;
   padding: 1rem 2rem;
   box-shadow: 0 0 15px var(--shadows);
   border-radius: 5px;
@@ -173,25 +220,24 @@ const where = computed(() => {
   transform: scale(1.05);
 }
 
-.full_description{
+.full_description {
   position: absolute;
   display: none;
   bottom: -1rem;
   width: 45%;
   left: 50%;
   padding: 1rem 2rem;
-  z-index: 10 ;
+  z-index: 10;
   background-color: var(--bg_main);
   box-shadow: 0 0 15px var(--shadows);
   border-radius: 5px;
   transform: scale(0);
   opacity: 0;
-  transition: opacity .3s;
+  transition: opacity 0.3s;
 }
 
-.blog_link:hover>.full_description{
+.blog_link:hover > .full_description {
   transform: scale(1);
   opacity: 1;
 }
-
 </style>

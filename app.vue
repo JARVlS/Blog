@@ -24,6 +24,7 @@
     --blue_gray: #738FA7;
     --text_main: #ffffff;
     --shadows: #000000;
+    --color_main: #00fd87;
 }
 
 *{
@@ -46,5 +47,9 @@
   padding: 2rem;
 }
 
+*::selection{
+  background-color: var(--text_main);
+  color: var(--bg_main);
+}
 
 </style>
