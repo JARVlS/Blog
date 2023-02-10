@@ -1,5 +1,5 @@
 ---
-title: Programming language choice
+title: Coding language choice
 tags: ['Coding']
 description: Guide for programming languages
 ---

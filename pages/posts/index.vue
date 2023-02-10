@@ -29,8 +29,20 @@ const where = computed(() => {
     temp.tags = { $contains: chosenTags.value };
     // return { tags: { $contains: chosenTags.value } } as QueryBuilderWhere;
   }
-  if (blog_search) {
-    temp.description = { $icontains: blog_search.value };
+  if (blog_search.value != "") {
+    var blog_search_array: string[] = blog_search.value.split(",");
+    temp.$and = [];
+    blog_search_array.forEach((search) => {
+      while (search.startsWith(" ")) {
+        search = search.slice(1, search.length);
+      }
+      temp.$and?.push({
+        $or: [
+          { description: { $icontains: search } },
+          { title: { $icontains: search } },
+        ],
+      });
+    });
   }
   return temp;
 });
@@ -97,7 +109,7 @@ const where = computed(() => {
   font-weight: bold;
 }
 
-#headline{
+#headline {
   margin-bottom: 1rem;
 }
 
@@ -105,7 +117,7 @@ const where = computed(() => {
   width: 92vw;
   margin: auto;
   box-shadow: 0 0 15px var(--shadows);
-  margin-top: 2rem ;
+  margin-top: 2rem;
   margin-bottom: 2rem;
   padding: 2rem 1rem;
   height: max-content;
@@ -123,7 +135,7 @@ const where = computed(() => {
   position: relative;
   align-items: center;
   grid-template-columns: repeat(2, minmax(calc(33% - 2rem), 9rem));
-  gap: .5rem;
+  gap: 0.5rem;
   transition: gap 0.3s;
 }
 
@@ -184,11 +196,11 @@ const where = computed(() => {
   font-weight: bold;
 }
 
-@media(min-width: 850px){
+@media (min-width: 850px) {
   .blog_link {
     padding: 1rem 2rem 1rem 3.5rem;
   }
-  .blog_link::before{
+  .blog_link::before {
     content: "";
     position: absolute;
     top: 0;
@@ -200,24 +212,26 @@ const where = computed(() => {
     transition: width 0.2s;
   }
 
-  .blog_link:hover::before{
+  .blog_link:hover::before {
     width: 2.5rem;
   }
 }
 
-
 .show_more {
   cursor: pointer;
   position: relative;
+  color: var(--color_main);
+  font-weight: bold;
   padding: 1rem 2rem;
   box-shadow: 0 0 15px var(--shadows);
   border-radius: 5px;
   margin-top: 2rem;
-  transition: transform 0.2s;
+  transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .show_more:hover {
   transform: scale(1.05);
+  box-shadow: 0 0 15px -2px var(--color_main);
 }
 
 .full_description {
