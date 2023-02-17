@@ -1,7 +1,7 @@
 <template>
   <div class="page" lang="en">
-    <navigation></navigation>
     <!-- liest aus /pages -->
+    <navigation></navigation>
     <NuxtPage />
    
     <!-- liest aus /content, siehe https://content.nuxtjs.org/get-started -->
@@ -25,6 +25,7 @@
     --text_main: #ffffff;
     --shadows: #000000;
     --color_main: #00fd87;
+    --color_secondary: #00ffff;
 }
 
 *{

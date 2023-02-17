@@ -12,6 +12,10 @@ const routeTags = useRouteQuery("tags", [] as string[], {
   mode: "replace",
 }) as Ref<string | string[]>;
 
+const routeSearch = useRouteQuery("search", "" as string, {
+  mode: "replace",
+}) as Ref<string>;
+
 const chosenTags = computed<string[]>({
   get: () =>
     typeof routeTags.value === "string" ? [routeTags.value] : routeTags.value,
@@ -20,7 +24,14 @@ const chosenTags = computed<string[]>({
   },
 });
 
-const blog_search = ref("");
+const blog_search = computed<string>({
+  get: () => routeSearch.value,
+  set: (value: string) => {
+    routeSearch.value = value;
+  },
+});
+
+// const blog_search = ref("");
 const limit: Ref<number> = ref(10);
 
 const where = computed(() => {
@@ -33,9 +44,7 @@ const where = computed(() => {
     var blog_search_array: string[] = blog_search.value.split(",");
     temp.$and = [];
     blog_search_array.forEach((search) => {
-      while (search.startsWith(" ")) {
-        search = search.slice(1, search.length);
-      }
+      search = search.trim()
       temp.$and?.push({
         $or: [
           { description: { $icontains: search } },
@@ -49,6 +58,7 @@ const where = computed(() => {
 </script>
 
 <template>
+  <Title>Choose your read</Title>
   <div class="page_content blog_selection">
     <h1 id="headline">Select Your Read</h1>
 

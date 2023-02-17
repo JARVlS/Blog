@@ -1,25 +1,31 @@
 <template>
-  <div class="navigation">
-      <ul id="navigation_links">
-          <li>
-              <nuxt-link class="navigation_link" to="/">HOME</nuxt-link>
-            </li>
-            <li>
-                <nuxt-link class="navigation_link" to="/posts">POSTS</nuxt-link>
-            </li>
-        </ul>
-        <h1 id="logo">LOGO</h1>
+  <div
+    class="navigation"
+    :style="$route.path=='/'?'width: max-content; padding: 1rem 3rem !important; position: fixed; border-radius: 0 0 0 5px;  right: 0; top: 0;':''"
+  >
+    <ul id="navigation_links">
+      <li>
+        <nuxt-link class="navigation_link" to="/">HOME </nuxt-link>
+      </li>
+      <li>
+        <nuxt-link class="navigation_link" to="/posts">POSTS</nuxt-link>
+      </li>
+    </ul>
+    <img id="logo" src="../assets/Images/Icon/bookv3_v1.png" />
   </div>
 </template>
 
 <style scoped>
 .navigation {
-  padding: .5rem 2rem;
+  padding: 0.5rem 2rem;
   display: grid;
   grid-template-columns: auto max-content;
   align-items: center;
   gap: min(3vw, 3rem);
   box-shadow: 0 0 20px var(--shadows);
+  background-color: var(--bg_main);
+  z-index: 100;
+  transition: all .2s;
 }
 
 #navigation_links {
@@ -61,8 +67,10 @@
   transform: scaleX(1);
 }
 
-#logo{
+#logo {
   font-size: 2.5rem;
+  height: 4.5rem;
   color: var(--color_main);
 }
 </style>
+<style v-if="$route.path == '/'"></style>
