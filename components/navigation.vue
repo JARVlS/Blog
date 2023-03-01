@@ -2,7 +2,7 @@
   <div
     class="navigation"
     :style="$route.path=='/'?'width: max-content; padding: 1rem 3rem !important; position: fixed; border-radius: 0 0 0 5px;  right: 0; top: 0;':''"
-  >
+    >
     <ul id="navigation_links">
       <li>
         <nuxt-link class="navigation_link" to="/">HOME </nuxt-link>
@@ -11,7 +11,8 @@
         <nuxt-link class="navigation_link" to="/posts">POSTS</nuxt-link>
       </li>
     </ul>
-    <img id="logo" src="../assets/Images/Icon/bookv3_v1.png" />
+    <nuxt-link to="/"><img id="logo" src="../assets/Images/Icon/bookv3_v1.png" /></nuxt-link>
+    
   </div>
 </template>
 
@@ -25,7 +26,8 @@
   box-shadow: 0 0 20px var(--shadows);
   background-color: var(--bg_main);
   z-index: 100;
-  transition: all .2s;
+  width: 100%;
+  transition: all .2s, width .2s;
 }
 
 #navigation_links {
@@ -73,4 +75,3 @@
   color: var(--color_main);
 }
 </style>
-<style v-if="$route.path == '/'"></style>

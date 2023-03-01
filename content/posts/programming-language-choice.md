@@ -1,6 +1,6 @@
 ---
 title: Coding language choice
-tags: ['Coding']
+tags: ['Coding', 'Python']
 description: Guide for programming languages
 ---
 

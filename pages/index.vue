@@ -1,36 +1,39 @@
 <template>
-  <div class="main_image"></div>
-  <div class="page_content">
-    <h1 id="welcome_headline">
-      <span id="welcome">Welcome to </span><span id="name">Tech Diaries</span>
-    </h1>
-    <div class="paragraph">
-      <div class="headline">What you're in for</div>
-      <div class="content">
-        This site here to help and guide you on your journey to becoming better
-        and more well informed about all things concerning <b>Tech</b> and
-        especially <b>Coding</b>. We will be posting articles on a variety of
-        topics, ranging from the basics of coding to more advanced topics, from
-        which device you should choose to what operating system you should run.
+  <div class="container">
+    <div class="main_image"></div>
+    <div class="page_content">
+      <h1 id="welcome_headline">
+        <span id="welcome">Welcome to </span><span id="name">Tech Diaries</span>
+      </h1>
+      <div class="paragraph">
+        <div class="headline">What you're in for</div>
+        <div class="content">
+          This site here to help and guide you on your journey to becoming
+          better and more well informed about all things concerning
+          <b>Tech</b> and especially <b>Coding</b>. We will be posting articles
+          on a variety of topics, ranging from the basics of coding to more
+          advanced topics, from which device you should choose to what operating
+          system you should run.
+        </div>
       </div>
-    </div>
-    <div class="paragraph">
-      <div class="headline">From coders for coders</div>
-      <div class="content">
-        This site is run by coders to help other coders. It aims to help with
-        overcoming difficulties you might face, that we may already have a
-        solution for. <br /><br />
-        As coders ourselves, we have an idea on what topics might be important
-        to cover and will try to focus on those at first. <br /><br />
-        That might be a code example or a link to a tutorial video, or it might
-        be advice on how to select your working device.
+      <div class="paragraph">
+        <div class="headline">From coders for coders</div>
+        <div class="content">
+          This site is run by coders to help other coders. It aims to help with
+          overcoming difficulties you might face, that we may already have a
+          solution for. <br /><br />
+          As coders ourselves, we have an idea on what topics might be important
+          to cover and will try to focus on those at first. <br /><br />
+          That might be a code example or a link to a tutorial video, or it
+          might be advice on how to select your working device.
+        </div>
       </div>
-    </div>
-    <div class="paragraph">
-      <div class="headline">The mission</div>
-      <div class="content">
-        Our objective is to help you become a better coder, and to help you find
-        the right tools for whatever job you might be doing.
+      <div class="paragraph">
+        <div class="headline">The mission</div>
+        <div class="content">
+          Our objective is to help you become a better coder, and to help you
+          find the right tools for whatever job you might be doing.
+        </div>
       </div>
     </div>
   </div>
@@ -68,6 +71,8 @@
   background-clip: text;
   color: transparent; */
   width: 30%;
+  z-index: 2;
+  position: relative;
 }
 
 .paragraph {
@@ -105,4 +110,3 @@
   z-index: 1;
 }
 </style>
-

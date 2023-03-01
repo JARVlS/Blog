@@ -6,7 +6,7 @@ import {
   QueryBuilderWhere,
 } from "@nuxt/content/dist/runtime/types";
 
-const availabeTags = ["Coding", "Tech", "Hacking", "Laptops", "Gaming"];
+import { computedAsync } from "@vueuse/core";
 
 const routeTags = useRouteQuery("tags", [] as string[], {
   mode: "replace",
@@ -31,7 +31,7 @@ const blog_search = computed<string>({
   },
 });
 
-// const blog_search = ref("");
+// max number of posts to load
 const limit: Ref<number> = ref(10);
 
 const where = computed(() => {
@@ -40,11 +40,12 @@ const where = computed(() => {
     temp.tags = { $contains: chosenTags.value };
     // return { tags: { $contains: chosenTags.value } } as QueryBuilderWhere;
   }
+  // if sth is searched for, add it to the where clause
   if (blog_search.value != "") {
     var blog_search_array: string[] = blog_search.value.split(",");
     temp.$and = [];
     blog_search_array.forEach((search) => {
-      search = search.trim()
+      search = search.trim();
       temp.$and?.push({
         $or: [
           { description: { $icontains: search } },
@@ -55,64 +56,135 @@ const where = computed(() => {
   }
   return temp;
 });
+
+interface TagPrio {
+  [tag: string]: number;
+}
+
+const max_filters: Ref<number> = ref(10);
+
+// const availabeTags: Array<string> = reactive([]);
+const availabeTags = computedAsync(async () => {
+  let prio: TagPrio = {}; // Priority of tags (how many times they appear)
+  let temp_tags = new Set<string>();
+  let mfilters = max_filters.value;
+
+  // get all tags from posts and sort them by priority
+  await queryContent("/posts")
+    .where(where.value)
+    .limit(20)
+    .find()
+    .then((res) => {
+      res.forEach((element: ParsedContent) => {
+        element.tags.forEach((tag: string) => {
+          // increase prio when tag already exists in prio
+          if (prio[tag]) {
+            prio[tag] = prio[tag] + 1;
+          } else {
+            prio[tag] = 1;
+          }
+        });
+      });
+    });
+
+  // write tags to set (every filter only once)
+  Object.keys(prio)
+    .sort((a, b) => prio[b] - prio[a])
+    .forEach((tag) => {
+      // only maximum of 10 tags
+      if (temp_tags.size >= mfilters) {
+        return;
+      }
+      temp_tags.add(tag);
+    });
+  return temp_tags;
+}, new Set());
+
+function increaseFilters() {
+  //only if there might be more tags available -> saving performance
+  if (availabeTags.value.size == max_filters.value) {
+    max_filters.value += 10;
+  }
+}
 </script>
 
 <template>
-  <Title>Choose your read</Title>
-  <div class="page_content blog_selection">
-    <h1 id="headline">Select Your Read</h1>
+  <div class="container">
+    <Title>Choose your read</Title>
+    <div class="page_content blog_selection">
+      <h1 id="headline">Select Your Read</h1>
 
-    <div class="filters">
-      <p>Filters</p>
-      <custom-checkbox
-        v-for="tag in availabeTags"
-        :label="tag"
-        v-model:array="chosenTags"
-        :array-element="tag"
-        :class="chosenTags.includes(tag) ? 'checked' : ''"
-      ></custom-checkbox>
-    </div>
-    <search-bar v-model:search-model="blog_search"></search-bar>
-
-    <ContentQuery path="posts" :where="where" v-slot="{ data }" :limit="limit">
-      <menu id="available_blogs">
-        <p class="header">Available blogs</p>
-        <nuxt-link
-          v-for="article in data"
-          :key="article._path"
-          :to="article._path"
-          class="blog_link"
-          v-if="data.length > 0"
+      <div class="filters">
+        <p>Tags</p>
+        <custom-checkbox
+          v-for="tag in availabeTags"
+          :label="tag"
+          v-model:array="chosenTags"
+          :array-element="tag"
+          :class="chosenTags.includes(tag) ? 'checked' : ''"
+        ></custom-checkbox>
+        <div
+          @click="increaseFilters"
+          class="show_more"
+          id="show_more_tags"
+          :class="availabeTags.size < max_filters ? 'inactive' : ''"
+          :title="availabeTags.size < max_filters ? 'No more tags available' : ''"
         >
-          <span class="title">
-            {{ article.title }}
-          </span>
-          -
-          <span class="description">
-            {{ article.description.substring(0, 25) }}
-            {{ article.description.length > 25 ? "..." : "" }}
-          </span>
-          <span class="full_description">
-            {{ article.description }}
-          </span>
-        </nuxt-link>
-        <p v-else id="none_found">Sorry... No articles found.</p>
-      </menu>
-      <div
-        class="show_more"
-        @click="
-          if (data.length == limit) {
-            limit = limit + 10;
-          }
-        "
-      >
-        Show more
+          More Tags
+        </div>
       </div>
-    </ContentQuery>
+      <search-bar v-model:search-model="blog_search"></search-bar>
+
+      <ContentQuery
+        path="posts"
+        :where="where"
+        v-slot="{ data }"
+        :limit="limit"
+      >
+        <menu id="available_blogs">
+          <p class="header">Available blogs</p>
+          <nuxt-link
+            v-for="article in data"
+            :key="article._path"
+            :to="article._path"
+            class="blog_link"
+            v-if="data.length > 0"
+          >
+            <span class="title">
+              {{ article.title }}
+            </span>
+            -
+            <span class="description">
+              {{ article.description.substring(0, 25) }}
+              {{ article.description.length > 25 ? "..." : "" }}
+            </span>
+            <span class="full_description">
+              {{ article.description }}
+            </span>
+          </nuxt-link>
+          <p v-else id="none_found">Sorry... No articles found.</p>
+        </menu>
+        <div
+          class="show_more"
+          :class="data.length < limit ? 'inactive' : ''"
+          :title="data.length < limit ? 'No more articles available' : ''"
+          @click="
+            if (data.length == limit) {
+              limit = limit + 10;
+            }
+          "
+        >
+          Show more
+        </div>
+      </ContentQuery>
+    </div>
   </div>
 </template>
 
 <style scoped>
+.container {
+  padding-top: 6rem;
+}
 #none_found {
   color: rgba(255, 0, 0, 0.75);
   font-size: 1.3rem;
@@ -142,11 +214,20 @@ const where = computed(() => {
 .filters {
   display: grid;
   max-width: 100%;
+  height: 10rem;
+  padding: 1rem;
+  overflow-y: auto;
   position: relative;
   align-items: center;
   grid-template-columns: repeat(2, minmax(calc(33% - 2rem), 9rem));
   gap: 0.5rem;
   transition: gap 0.3s;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.filters::-webkit-scrollbar {
+  display: none;
 }
 
 @media (min-width: 850px) {
@@ -233,6 +314,7 @@ const where = computed(() => {
   color: var(--color_main);
   font-weight: bold;
   padding: 1rem 2rem;
+  text-align: center;
   box-shadow: 0 0 15px var(--shadows);
   border-radius: 5px;
   margin-top: 2rem;
@@ -242,6 +324,17 @@ const where = computed(() => {
 .show_more:hover {
   transform: scale(1.05);
   box-shadow: 0 0 15px -2px var(--color_main);
+}
+
+.show_more.inactive {
+  color: var(--shadows);
+}
+.show_more.inactive:hover {
+  box-shadow: 0 0 15px var(--shadows);
+}
+
+#show_more_tags {
+  margin-top: 0;
 }
 
 .full_description {
