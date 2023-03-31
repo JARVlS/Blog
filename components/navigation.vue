@@ -4,11 +4,11 @@
     :style="$route.path=='/'?'width: max-content; padding: 1rem 3rem !important; position: fixed; border-radius: 0 0 0 5px;  right: 0; top: 0;':''"
     >
     <ul id="navigation_links">
-      <li>
-        <nuxt-link class="navigation_link" to="/">HOME </nuxt-link>
+      <li @click="scrollToTop">
+        <nuxt-link class="navigation_link" to="/" >HOME</nuxt-link>
       </li>
-      <li>
-        <nuxt-link class="navigation_link" to="/posts">POSTS</nuxt-link>
+      <li >
+        <nuxt-link class="navigation_link" to="/posts" >POSTS</nuxt-link>
       </li>
     </ul>
     <nuxt-link to="/"><img id="logo" src="../assets/Images/Icon/bookv3_v1.png" /></nuxt-link>
@@ -16,18 +16,34 @@
   </div>
 </template>
 
+<script setup lang="ts">
+
+const props = defineProps<{
+  page: HTMLDivElement
+}>()
+
+function scrollToTop(){
+  props.page.scrollTo(0,0)  
+}
+
+</script>
+
 <style scoped>
 .navigation {
   padding: 0.5rem 2rem;
   display: grid;
   grid-template-columns: auto max-content;
+  align-content: center;
   align-items: center;
   gap: min(3vw, 3rem);
   box-shadow: 0 0 20px var(--shadows);
   background-color: var(--bg_main);
   z-index: 100;
   width: 100%;
+  height: 6rem;
   transition: all .2s, width .2s;
+  position: fixed;
+  top: 0;
 }
 
 #navigation_links {
@@ -74,4 +90,5 @@
   height: 4.5rem;
   color: var(--color_main);
 }
+
 </style>

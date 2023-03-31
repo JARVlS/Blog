@@ -1,7 +1,7 @@
 <template>
   <!-- liest aus /pages -->
-  <div class="page" lang="en">
-  <navigation></navigation>
+  <div class="page" lang="en" ref="page">
+  <navigation v-bind:page="page"></navigation>
   <NuxtPage/>
 
     <!-- liest aus /content, siehe https://content.nuxtjs.org/get-started -->
@@ -10,6 +10,10 @@
     -->
   </div>
 </template>
+
+<script setup lang="ts">
+const page = ref()
+</script>
 
 <style>
 @font-face {
@@ -56,7 +60,7 @@
   height: 100vh;
   width: 100vw;
   position: absolute;
-  top: 0;
+  top: 6rem;
   left: 0;
 }
 

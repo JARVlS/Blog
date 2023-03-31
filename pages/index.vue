@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container" @mousemove="rotateElement($event)" :style="'--rotateX:'+-offsetY+'deg;--rotateY:' + offsetX+'deg;'">
     <div class="main_image"></div>
     <div class="page_content">
       <h1 id="welcome_headline">
@@ -39,6 +39,24 @@
   </div>
 </template>
 
+<script setup lang="ts">  
+
+const offsetX = ref(0)
+const offsetY = ref(0)
+
+
+function rotateElement(event: MouseEvent) {
+  var x = event.clientX;
+  var y = event.clientY;
+  
+  const middleX = window.innerWidth / 4;
+  const middleY = window.innerHeight / 4;
+  
+  offsetX.value = ((x - middleX) / middleX) * 10;
+  offsetY.value = ((y - middleY) / middleY) * 10;
+}
+</script>
+
 <style scoped>
 #welcome_headline {
   width: max-content;
@@ -63,6 +81,9 @@
   /* color: var(--color_main); */
   /* padding-left: .5rem; */
 }
+.container{
+  top: 0;
+}
 .page_content {
   /* background-color: var(--text_main); */
   /* background-image: url("../assets/Images/BG/green_ice.png"); */
@@ -76,12 +97,38 @@
 }
 
 .paragraph {
-  margin: 2rem 0;
+  margin: 4rem 0;
   color: var(--text_main);
-  box-shadow: 0 0 15px black;
+  background: rgba(20, 20, 20, 1);
   padding: 1rem;
-  border-radius: 5px;
+  border-radius: 10px;
+  position: relative;
+  overflow: visible;
+  transform-style: preserve-3d;
+  perspective: 2000px;
+  transform: rotateX(var(--rotateX)) rotateY(var(--rotateY));
 }
+
+.paragraph::before,
+.paragraph::after {
+  content: "";
+  position: absolute;
+  border-radius: inherit;
+}
+
+.paragraph::after {
+  inset: -1rem;
+  background: linear-gradient(-225deg, var(--color_main), var(--bg_main));
+  /* filter: blur(1rem); */
+  transform: translateZ(-50px);
+}
+.paragraph::before {
+  background: rgba(0, 0, 0, .75);
+  inset: .5rem;
+  filter: blur(1rem);
+  transform: translateZ(-49px);
+}
+
 .paragraph .headline {
   font-size: 1.5rem;
   font-weight: 600;
@@ -109,4 +156,10 @@
   pointer-events: none;
   z-index: 1;
 }
+
+/* .page-leave-active>.container>.main_image{
+  opacity: 0;
+} */
+
+
 </style>

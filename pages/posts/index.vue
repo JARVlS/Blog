@@ -182,9 +182,6 @@ function increaseFilters() {
 </template>
 
 <style scoped>
-.container {
-  padding-top: 6rem;
-}
 #none_found {
   color: rgba(255, 0, 0, 0.75);
   font-size: 1.3rem;

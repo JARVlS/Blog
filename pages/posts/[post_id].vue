@@ -1,5 +1,5 @@
 <template>
-  <main>
+  <div class="container">
     <content-doc>
       <!-- Der not-found-slot entspricht einer 404-Seite -->
       <template v-slot:not-found>
@@ -13,11 +13,12 @@
           <!-- <ul>
             <li v-for="tag in doc.tags">{{ tag }}</li>
           </ul> -->
-          <ContentRenderer class="post_content" :value="doc"></ContentRenderer>
+          <ContentRendererMarkdown class="post_content" :value="doc"></ContentRendererMarkdown
+            >
         </div>
       </template>
     </content-doc>
-  </main>
+  </div>
 </template>
 
 <style scoped>
@@ -31,6 +32,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
   height: calc(100vh - 7vh);
   margin: auto;
   overflow: auto;
@@ -48,6 +50,7 @@
   top: 0;
   box-shadow:  0 0 20px  var(--shadows);
   border-radius: 0 0 5px 5px;
+  z-index: 101;
 }
 
 .post_title::before, .post_title::after{
@@ -76,5 +79,26 @@
   max-width: 70rem;
   margin-inline: auto;
   padding: 2rem 2rem 4rem 2rem;
+} 
+
+
+</style>
+
+
+<style>
+.link_section{
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 5rem;
+  padding: 1rem;
+}
+.top_quote{
+  text-align: center;
+}
+@media(min-width: 1200px){
+  .link_section{
+    grid-template-columns: auto auto auto;
+    gap: 3rem;
+  }
 }
 </style>
