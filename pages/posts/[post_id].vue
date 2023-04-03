@@ -95,6 +95,25 @@
 .top_quote{
   text-align: center;
 }
+
+.content_section ul{
+  margin: 1rem 0 1rem 2rem;
+}
+
+
+.post_point_summary ul{
+  margin: 0;
+}
+
+.post_point_summary{
+  padding: 1rem 0 1rem 0;
+  cursor: pointer;
+}
+
+.content_section strong{
+  color: var(--color_main);
+}
+
 @media(min-width: 1200px){
   .link_section{
     grid-template-columns: auto auto auto;
