@@ -15,5 +15,8 @@ export default defineNuxtConfig({
         markdown: {
             mdc: true
         }
-    }
+    },
+    components: [
+        {path: '~/components', pathPrefix: false}
+    ]
 })

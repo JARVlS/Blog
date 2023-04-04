@@ -7,9 +7,9 @@ description: Guide for best Gaming/Coding Laptop
 
 <h2 class="top_quote"> - This is a guide on the best Laptop for every programmer, who is a gamer in his soul - </h2>
 
-<div class="content_section">
 
-  
+<!-- Every contentsection is sperate -->
+<div class="content_section">  
 
 ## What we are looking for and why
 
@@ -28,10 +28,14 @@ However, for gaming, you not only need a high power machine, you also might have
 
 In the following, I will provide an outline for what to look for in a new Laptop. Note, that this is only a recommendation and does not apply to 
 
-<details class="post_point_details">
-<summary class="post_point_summary"> <strong>CPU:</strong> </summary>
-<section>
+<!-- An expandable section for better overview -->
 
+
+::ExpandableSection
+#summary
+**CPU**
+
+#content
 - **Core Count**: More is better
     - The more cores, the better the CPU can handle multi-tasking and multi-threaded applications
 - **Clock Speed**: Higher is better
@@ -49,15 +53,13 @@ In the following, I will provide an outline for what to look for in a new Laptop
     - Pro Intel
         - Better single-core performance
         - Generally are more power-efficient 
+::
 
-</section>
-</details>
+::ExpandableSection
+#summary
+****GPU****
 
-
-<details class="post_point_details">
-<summary class="post_point_summary"> <strong>GPU:</strong> </summary>
-<section>
-
+#content
 - **Dedicated GPU**: Essential for gaming
     - Integrated graphics, while suitable for most productivity tasks, may struggle with demanding games.
 - **VRAM**: More is better
@@ -76,13 +78,13 @@ In the following, I will provide an outline for what to look for in a new Laptop
     - The brand of the GPU can affect compatibility with certain games and applications
     -  It's important to research the specific games and applications you plan to use and ensure that the GPU you choose is compatible
 
-</section>
-</details>
+::
 
+::ExpandableSection
+#summary
+**Screen**
 
-<details class="post_point_details">
-<summary class="post_point_summary"> <strong>Screen:</strong> </summary>
-<section>
+#content
 
 - **Summarized**
     - Overall, a 14-inch display with a resolution of 1920x1080 (FHD) and a refresh rate of 120Hz is a good choice 
@@ -116,13 +118,11 @@ In the following, I will provide an outline for what to look for in a new Laptop
 - **Panel type**
     - The type of panel (IPS, TN or VA) can affect the color accuracy, viewing angles and response time of the display. 
     - **Recommendation**: An IPS panel is recommended, as it provides good color accuracy and wide viewing angles 
-
-</section>
-</details>
-
+::
 </div>
 
 <div class="link_section">
+<!-- Using the ProductLink Component in /components/content  -->
 
 ::ProductLink
 ---
