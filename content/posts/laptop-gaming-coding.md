@@ -98,6 +98,10 @@ As a guideline, you should have **at least 16GB of RAM** in your machine.
 Speed is not as important as many people think for gaming, with the exception of some very specific games.
 - You should get RAM at a minimum of about 3200Mhz or higher which is provided in most laptops
     - However, you are not going to see much difference from here on upwards
+
+### Upgradability
+Much more important can be the option to upgrade your amount or speed of RAM later on.
+- Make sure, that if you are not at 32GB of RAM, that it is upgradable 
 ::
 
 
