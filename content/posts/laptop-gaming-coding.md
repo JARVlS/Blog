@@ -57,7 +57,7 @@ In the following, I will provide an outline for what to look for in a new Laptop
 
 ::ExpandableSection
 #summary
-****GPU****
+**GPU**
 
 #content
 - **Dedicated GPU**: Essential for gaming
@@ -82,12 +82,34 @@ In the following, I will provide an outline for what to look for in a new Laptop
 
 ::ExpandableSection
 #summary
+**RAM**
+
+#content
+
+### **Amount**
+As a guideline, you should have **at least 16GB of RAM** in your machine. 
+
+- When more?
+    - If you plan on working with 3D modeling software for your projects
+        - In this case, 32GB of RAM is recommended
+    - If one of your games needs more (individual needs)
+
+### **Speed**
+Speed is not as important as many people think for gaming, with the exception of some very specific games.
+- You should get RAM at a minimum of about 3200Mhz or higher which is provided in most laptops
+    - However, you are not going to see much difference from here on upwards
+::
+
+
+::ExpandableSection
+#summary
 **Screen**
 
 #content
 
 - **Summarized**
     - Overall, a 14-inch display with a resolution of 1920x1080 (FHD) and a refresh rate of 120Hz is a good choice 
+    - Even better is a 16:10 aspect ratio, as it provides more vertical space. That can help with getting a better overview or more code on your screen.
     - For more info check out the following points 
 - **Size**: 
     - Pro big:
@@ -118,6 +140,49 @@ In the following, I will provide an outline for what to look for in a new Laptop
 - **Panel type**
     - The type of panel (IPS, TN or VA) can affect the color accuracy, viewing angles and response time of the display. 
     - **Recommendation**: An IPS panel is recommended, as it provides good color accuracy and wide viewing angles 
+- **Aspect Ratio**
+    - For developers, it is mostly recommended to look for a device with a 16:10 aspect ratio
+        - It provides more vertical space on your screen
+        - Therefore, you see more code or lines in your terminal, which can provide a much more pleasant experience
+    - However, 16:9 aspect-ratios are still the standard and work almost as well for most people
+::
+
+::ExpandableSection
+#summary
+**Keyboard**
+
+#content
+### **Coding**
+As a developer, pentester or simply a person who spends a lot of time at their device, your keyboard is your weapon of choice. It should feel comfortable to type on, provide you with stability as well as speed. 
+- That speeks in favor of a rubberdome keyboard as most people find them to be more comfortable to type on. 
+
+### **Gaming**
+For gamers, there are even more factors to consider. 
+- **Key switches** - At first, you have to decide, whether you even want a mechenical keyboard. If you do, here is what to look for
+    - Your key switches will not only determine how it feels to type on the keyboard. They also affect
+        - Sound: E.g. Brown Switches are loud / Red are silent 
+        - Key travel: How much can the key travel and how much travel will activate it
+    - Most common and recommended are Cherry MX or Razer switches
+
+- **Key rollover**
+    - Refers to how many keys can be pressed simultaneously without losing inputs.
+    - At least 6-key-rollover 
+    - Recommended: n-key-rollover (unlimited number of keys pressed)
+
+- **Anti-Ghosting**
+    - Prevents keys from being registered incorrectly when multiple keys are pressed.
+    - This is very important for gaming, as "fast and accurate" is every gamers dream 
+
+
+### **Both**
+There are some things, that are suited both for gaming and coding
+- **Backlight**
+    - For those late-night coding sessions you want to have a backlight keyboard to see what you are typing
+    - If you are dimming down your room for a gaming session to have more immersive experience, you wouldn't want to loose track of your keyboard...
+- **Build quality**
+    - Frequent use of your new Laptop is literally pre-programmed and therefore, the one device that will be used the most - your keyboard -  has to be durable
+    - You might even want to go for a waterproof model as in some instances, you will want to have a beverage by your side without fearing for your laptop ;) 
+
 ::
 </div>
 
