@@ -55,9 +55,9 @@ const page = ref()
   background-color: var(--text_main);
   color: var(--bg_main);
 }
-
+  
 .container {
-  height: 100vh;
+  height: max-content;
   width: 100vw;
   position: absolute;
   top: 6rem;

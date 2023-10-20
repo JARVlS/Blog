@@ -28,12 +28,12 @@
   text-align: center;
   padding: 2rem 1rem;
 }
-.blog_post{
+.blog_post{ 
   display: flex;
   flex-direction: column;
   align-items: center;
   position: relative;
-  height: calc(100vh - 7vh);
+  height: calc(100vh - 7rem);
   margin: auto;
   overflow: auto;
 }
@@ -92,6 +92,10 @@
 .content_section h3, .content_section h2{
   margin: 1.5rem 0 .5rem 0;
 }
+.content_section a{
+  color: var(--color_main);
+  font-weight: bold;
+}
 .link_section{
   display: grid;
   grid-template-columns: auto auto;
@@ -100,6 +104,29 @@
 }
 .top_quote{
   text-align: center;
+  border-radius: 10px;
+  border: 3px solid var(--color_main);
+  padding: 1rem;
+  position: relative;
+}
+
+.top_quote::before, .top_quote::after{
+  content: '"';
+  font-size: 3rem;
+  height: 1.5rem; 
+  width: 1.5rem;
+  padding: .25rem 1rem;
+  position: absolute;
+  background-color: var(--bg_main);
+}
+
+.top_quote::before{
+  top: -1.25rem;
+  left: 1rem;
+}
+.top_quote::after{
+  bottom: -.75rem;
+  right: 1rem;
 }
 
 .post_point_details {

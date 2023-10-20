@@ -9,9 +9,9 @@ defineProps<{
 
 <template>
   <div class="product_ad">
-    <h2 class="product_name_headline">
+    <!-- <h2 class="product_name_headline">
       <contentSlot :use="$slots.name" unwrap="" />
-    </h2>
+    </h2> -->
     <!-- <div class="image" id="image_container">
       <contentSlot :use="$slots.image" unwrap="p"/>
     </div> -->

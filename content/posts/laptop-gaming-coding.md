@@ -5,7 +5,7 @@ description: Guide for best Gaming/Coding Laptop
 ---
 
 
-<h2 class="top_quote"> - This is a guide on the best Laptop for every programmer, who is a gamer in his soul - </h2>
+<h2 class="top_quote">Coder at day, gamer at night</h2>
 
 
 <!-- Every contentsection is sperate -->
@@ -99,7 +99,7 @@ Speed is not as important as many people think for gaming, with the exception of
 - You should get RAM at a minimum of about 3200Mhz or higher which is provided in most laptops
     - However, you are not going to see much difference from here on upwards
 
-### Upgradability
+### **Upgradability**
 Much more important can be the option to upgrade your amount or speed of RAM later on.
 - Make sure, that if you are not at 32GB of RAM, that it is upgradable 
 ::
@@ -189,6 +189,8 @@ There are some things, that are suited both for gaming and coding
 
 ::
 </div>
+
+# Our recommendation
 
 <div class="link_section">
 <!-- Using the ProductLink Component in /components/content  -->

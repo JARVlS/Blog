@@ -52,8 +52,8 @@ function rotateElement(event: MouseEvent) {
   const middleX = window.innerWidth / 4;
   const middleY = window.innerHeight / 4;
   
-  offsetX.value = ((x - middleX) / middleX) * 10;
-  offsetY.value = ((y - middleY) / middleY) * 10;
+  offsetX.value = ((x - middleX) / middleX) * 5;
+  offsetY.value = ((y - middleY) / middleY) * 5;
 }
 </script>
 
